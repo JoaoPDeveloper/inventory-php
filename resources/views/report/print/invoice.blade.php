@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Relatório de Saidas</title>
+	<title>Invoice Report</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,11 +28,14 @@
 
 							</tr>
 							<tr>
-								<th>Nº da fatura</th>
-								<th>Data da Fatura</th>
-								<th>Usuário</th>
-								<th>Detalhes</th>
-								<th>Valor Total</th>
+								<th>Invoice No.</th>
+								<th>Invoice Date</th>
+								<th>Customer</th>
+								<th>Seller</th>
+								<th>Details</th>
+								<th>Total Importe</th>
+								<th>Paid Importe</th>
+								<th>Due</th>
 							</tr>
 						</thead>
 						

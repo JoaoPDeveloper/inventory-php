@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Relatório de lucro</title>
+	<title>Profit Report</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,8 +28,12 @@
 
 							</tr>
 							<tr>
-								<th>Produto</th>
-								<th>Quantidade</th>
+								<th>Product</th>
+								<th>Quantity</th>
+								<th>Total Selling Importe</th>
+								<th>Total Buying Importe</th>
+								<th>Profit</th>
+							
 							</tr>
 						</thead>
 

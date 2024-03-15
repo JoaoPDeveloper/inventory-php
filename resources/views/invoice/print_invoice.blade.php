@@ -30,14 +30,14 @@
       <!-- info row -->
       <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
-          Informações
+          Información del cliente
           <address>
             <strong>{{ $invoice->customer->customer_name }}</strong><br>
 
-            <span style="font-weight: bold">Telefone:</span> {{ $invoice->customer->phone }}<br>
-            <span style="font-weight: bold">E-mail:</span> {{ $invoice->customer->email ? $invoice->customer->email : 'no email' }}<br>
+            <span style="font-weight: bold">Telefono:</span> {{ $invoice->customer->phone }}<br>
+            <span style="font-weight: bold">Correo electrónico:</span> {{ $invoice->customer->email ? $invoice->customer->email : 'no email' }}<br>
 
-            <span style="font-weight: bold">Endereço:</span> {{ $invoice->customer->address  }}<br>
+            <span style="font-weight: bold">Dirección:</span> {{ $invoice->customer->address  }}<br>
             
           </address>
         </div>
@@ -47,7 +47,7 @@
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col text-right">
-          <b style="font-weight: bold;color: green">Fatura N° : {{ $invoice->id }}</b><br>
+          <b style="font-weight: bold;color: green">Factura N° : {{ $invoice->id }}</b><br>
           <b>Fecha: {{ date("d F Y", strtotime($invoice->sell_date)) }}</b><br>
         </div>
         <!-- /.col -->
@@ -60,13 +60,13 @@
           <table class="table table-striped table-bordered table-condensed">
             <thead style="background-color: teal;color: #fff;">
             <tr>
-              <th>Categoria</th>
-              <th>Produto</th>
-              <th>Comprovante</th>
-              <th>Quantia</th>
-              <th>Preço por Unidade</th>
-              <th>Desconto</th>
-              <th>Preço Total</th>
+              <th>Categoría</th>
+              <th>Producto</th>
+              <th>Comprobante</th>
+              <th>Cantidad</th>
+              <th>Precio por unidad</th>
+              <th>Descuento</th>
+              <th>Precio total</th>
             </tr>
             </thead>
             <tbody>
@@ -115,7 +115,7 @@
                 <td>$ {{ $sub_total+$discount }}</td>
               </tr>
               <tr>
-                <th>Desconto: </th>
+                <th>Descuento: </th>
                 <td>$ {{ $discount }}</td>
               </tr>
               <tr>
@@ -123,11 +123,11 @@
                 <td>$ {{ $sub_total }}</td>
               </tr> 
               <tr>
-                <th>Quantia paga: </th>
+                <th>Importe pagado: </th>
                 <td>$ {!! $paid = $invoice->paid_amount !!}</td>
               </tr>  
               <tr>
-                <th>valor devido: </th>
+                <th>Importe a debido: </th>
                 <td>$ {{ $sub_total-$paid }}</td>
               </tr>
             </table>

@@ -1,8 +1,8 @@
 @extends('include.master')
 
-@section('title','Inventario | Produtos')
+@section('title','Inventory | Productos')
 
-@section('page-title','Lista de produtos')
+@section('page-title','Lista de productos')
 
 @section('content')
 
@@ -16,7 +16,7 @@
             <div class="header">
                 <h2>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-product">
-                        Produto Novo
+                        Producto nuevo
                     </button>
                 </h2>
             </div>

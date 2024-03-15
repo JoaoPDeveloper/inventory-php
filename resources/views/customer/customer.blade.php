@@ -1,10 +1,10 @@
 @extends('include.master')
 
 
-@section('title','Inventario | Clientes')
+@section('title','Inventory | Clientes')
 
 
-@section('page-title','Todos os Clientes')
+@section('page-title','Todos los clientes')
 
 
 @section('content')
@@ -23,12 +23,12 @@
                         <div class="header">
                         <!--     <h2>
                                 Vendor List
-
+                          
                             </h2> -->
-
+                          
                           <h2>
                           	 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-customer">
-                                Novo Cliente
+                                Cliente nuevo
                              </button>
                           </h2>
                         </div>

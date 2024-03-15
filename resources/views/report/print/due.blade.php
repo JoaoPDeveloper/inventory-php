@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Divida Report</title>
+	<title>Due Report</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -29,9 +29,10 @@
 							</tr>
 							<tr>
 								
-								<th>Usuario</th>
-								<th>Quantidade total</th>
-								<th>Quantidade paga</th>
+								<th>Customer</th>
+								<th>Total Importe</th>
+								<th>Paid Importe</th>
+								<th>Due</th>
 							</tr>
 						</thead>
 						
