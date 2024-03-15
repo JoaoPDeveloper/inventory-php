@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Stock Report</title>
+	<title>Estoque Report</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,15 +28,14 @@
 
 							</tr>
 							<tr>
-								<th>Category</th>
-								<th>Product</th>
-								<th>Comprobante</th>
-								<th>Fecha</th>
-								<th>Entry By</th>
-								<th>Buying Price</th>
-								<th>Selling Price</th>
-								<th>Stock Quantity</th>
-								<th>Sold Quantity</th>
+								<th>Produto</th>
+								<th>Categoria</th>
+								<th>Comprovante</th>
+								<th>Saida</th>
+								<th>Usuário de Entrada</th>
+								<th>Valor de Compra</th>
+								<th>Quantidade de Estoque</th>
+								<th>Quantidade de Saida</th>
 								<th>Current Quantity</th>
 							</tr>
 						</thead>
