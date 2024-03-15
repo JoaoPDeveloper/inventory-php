@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sell Report</title>
+	<title>Relatório de Venda
+</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,17 +29,17 @@
 
 							</tr>
 							<tr>
-								<th>Product</th>
-								<th>Comprobante</th>
-								<th>Sold Date</th>
-								<th>Customer</th>
-								<th>Seller</th>
-								<th>Quantity</th>
-								<th>Unit Buying Price</th>
+								<th>Produto</th>
+								<th>Comprovante</th>
+								<th>Data de Saida</th>
+								<th>Usuário</th>
+								<th>Administrador</th>
+								<th>Quantidade</th>
+								<!-- <th>Unit Buying Price</th>
 								<th>Unit Selling Price</th>
 								<th>Disount Importe</th>
 								<th>Total Buying Importe</th>
-								<th>Total Selling Importe</th>
+								<th>Total Selling Importe</th> -->
 							
 							</tr>
 						</thead>
