@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
-use Illuminate\Http\Request;
 use App\Sell;
-use App\SellDetails;
-use Auth;
-
-use DB;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
@@ -19,7 +15,6 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -29,141 +24,111 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
           'payment_date' => 'required',
-          'payment_amount' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',          
-          'payment_in' => 'required',                 
+          'payment_amount' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+          'payment_in' => 'required',
         ]);
 
-        try{
-          
-          $sell = Sell::find($request->id);
+        try {
+            $sell = Sell::find($request->id);
 
-          $payment = new Payment;
+            $payment = new Payment();
 
-          $payment->sell_id = $request->id;
-          $payment->customer_id = $sell->customer_id;
-          $payment->user_id = Auth::user()->id;
-          $payment->date = date("Y-m-d", strtotime($request->payment_date));
-          $payment->amount = $request->payment_amount;
-          $payment->paid_in = $request->payment_in;
-          $payment->bank_information = $request->bank_info;
+            $payment->sell_id = $request->id;
+            $payment->customer_id = $sell->customer_id;
+            $payment->user_id = \Auth::user()->id;
+            $payment->date = date('Y-m-d', strtotime($request->payment_date));
+            $payment->amount = $request->payment_amount;
+            $payment->paid_in = $request->payment_in;
+            $payment->bank_information = $request->bank_info;
 
-          $payment->save();
+            $payment->save();
 
-          $paid_amount = $sell->paid_amount+$request->payment_amount;
+            $paid_amount = $sell->paid_amount + $request->payment_amount;
 
-          if($paid_amount>=$sell->total_amount){
-            
-            $sell->payment_status = 1;
-          }
+            if ($paid_amount >= $sell->total_amount) {
+                $sell->payment_status = 1;
+            }
 
-          $sell->paid_amount = $paid_amount;
+            $sell->paid_amount = $paid_amount;
 
-          $sell->save();
+            $sell->save();
 
-          return response()->json(['status'=>'success','message'=>'Payment Success']);
-
-
-
-        }
-        catch(\Exception $e){
-          
-          return response()->json(['status'=>'error','message'=>'Something Went Wrong']);
-
-        
-
+            return response()->json(['status' => 'success', 'message' => 'Pagamento efetivado com sucesso']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Algo de errado aconteceu']);
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-       
         $sell = Sell::with('customer')->find($id);
 
-        $payment = Payment::with('user')->where('sell_id','=',$id)->get();
+        $payment = Payment::with('user')->where('sell_id', '=', $id)->get();
 
-
-        return ['payment' => $payment,'invoice' => $sell];
+        return ['payment' => $payment, 'invoice' => $sell];
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
     public function edit(Payment $payment)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Payment $payment)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        
-    try{
+        try {
+            \DB::beginTransaction();
 
-         DB::beginTransaction();
+            $payment = Payment::find($id);
 
-        $payment = Payment::find($id);
+            $sell = Sell::find($payment->sell_id);
 
-        $sell = Sell::find($payment->sell_id);
+            $sell->paid_amount -= $payment->amount;
 
-        $sell->paid_amount = $sell->paid_amount - $payment->amount;
+            $sell->update();
 
-        $sell->update();
+            $payment->delete();
 
-        $payment->delete();
+            \DB::commit();
 
-        DB::commit();
+            return response()->json(['status' => 'success', 'message' => 'Apagado com sucesso']);
+        } catch (\Exception $e) {
+            \DB::rollback();
 
-        return response()->json(['status'=>'success','message'=>'Delete Success']);
-
-
-
-     }
-    catch(\Exception $e)
-    {
-        DB::rollback();
-
-        return response()->json(['status'=>'error','message'=>'¡Algo salió mal!']);
-
-    }
-
+            return response()->json(['status' => 'error', 'message' => 'Algo deu errado!']);
+        }
     }
 }

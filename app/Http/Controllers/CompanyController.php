@@ -15,7 +15,8 @@ class CompanyController extends Controller
     public function index()
     {
         $company = Company::find(1);
-        return view('setting.company_setting',['company'=>$company]);
+
+        return view('setting.company_setting', ['company' => $company]);
     }
 
     /**
@@ -25,77 +26,65 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-         
             'name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-
          ]);
 
-         $company = Company::find(1);
+        $company = Company::find(1);
 
-         $company->name = $request->name;
-         $company->address = $request->address;
-         $company->phone = $request->phone;
-         $company->update();
-        \Session::flash('message','Información de la empresa actualizada');
-         return redirect()->back();
+        $company->name = $request->name;
+        $company->address = $request->address;
+        $company->phone = $request->phone;
+        $company->update();
+        \Session::flash('message', 'Informações da Empresa atualizadas!');
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function show(Company $company)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function edit(Company $company)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Company $company)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function destroy(Company $company)
     {
-        //
     }
 }
