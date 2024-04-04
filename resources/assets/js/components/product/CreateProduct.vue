@@ -4,7 +4,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="defaultModalLabel">Información del producto</h4>
+            <h4 class="modal-title" id="defaultModalLabel">Informações sobre o Produto</h4>
           </div>
           <div class="modal-body">
             <div class="alert alert-danger" v-if="errors">
@@ -22,7 +22,7 @@
 
                     <select id="mySelect2" class="form-control select2" v-model="product.category"
                       v-select="product.category">
-                      <option value="0">Selecciona una categoría</option>
+                      <option value="0">Selecione uma Categoria</option>
 
                       <option v-for="(value, index) in categorys" :value="value.id" v-bind:key="index">{{ value.name }}
                       </option>
@@ -56,7 +56,7 @@
           </div>
           <div class="modal-footer">
             <br />
-            <button @click="createProduct" type="button" class="btn btn-success waves-effect">Guardar</button>
+            <button @click="createProduct" type="button" class="btn btn-success waves-effect">Salvar</button>
             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancelar</button>
           </div>
         </div>

@@ -13,7 +13,7 @@
             type="text"
             class="form-control"
             v-on:keyup="getData"
-            placeholder="Buscar por nombre"
+            placeholder="Buscar por nome"
             name
             v-model="name"
           />
@@ -29,11 +29,11 @@
         <table class="table table-condensed table-hover">
           <thead>
             <tr>
-              <th>Categoría</th>
-              <th>Nombre</th>
-              <th>Detalles</th>
+              <th>Categoria</th>
+              <th>Nome</th>
+              <th>Detalhes</th>
               <th>Editar</th>
-              <th>Eliminar</th>
+              <th>Apagar</th>
             </tr>
           </thead>
           <tbody>

@@ -1,8 +1,8 @@
 @extends('include.master')
 
-@section('title','Inventory | Categorías')
+@section('title','Inventario | Categorias')
 
-@section('page-title','Lista de categorías')
+@section('page-title','Lista de Categorias')
 
 @section('content')
 
@@ -18,7 +18,7 @@
             <div class="header">
                 <h2>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-category">
-                        Nueva categoría
+                        Nova Categoria
                     </button>
                 </h2>
             </div>

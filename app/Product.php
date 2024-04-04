@@ -6,37 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    // realtion with category
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category')->withDefault([
+            'id' => 0,
+            'name' => 'unknow category',
+        ]);
+    }
 
-  // realtion with category 
+    // realtion with stock
 
-  
-  public function category(){
+    public function stock()
+    {
+        return $this->hasMany('App\Stock');
+    }
 
-  	return $this->belongsTo('App\Category')->withDefault([
-        'id' => 0,
-        'name' => 'unknow category',
+    // relation with sell details
 
-    ]);
-  } 	
-     
-   // realtion with stock 
-
-   public function stock(){
-
-     
-     return $this->hasMany('App\Stock');  
-
-   }
-
-   // relation with sell details 
-
-
-   public function sell_details(){
-         
+    public function sell_details()
+    {
         return $this->hasMany('App\SellDetails');
-
-   }
-
-
+    }
 }

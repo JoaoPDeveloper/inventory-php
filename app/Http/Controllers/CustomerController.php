@@ -15,54 +15,39 @@ class CustomerController extends Controller
      */
     public function index()
     {
-
         return view('customer.customer');
-       
     }
 
-
-    public function CustomerList(Request $request){
-        
+    public function CustomerList(Request $request)
+    {
         $name = $request->name;
         $email = $request->email;
         $phone = $request->phone;
         $customer = Customer::withCount([
-            'sell AS total_amount' => function ($query){
-      
-              $query->select(DB::raw("COALESCE(SUM(total_amount),0)"));
-              
+            'sell AS total_amount' => function ($query) {
+                $query->select(DB::raw('COALESCE(SUM(total_amount),0)'));
             },
-            
-            'sell AS total_paid_amount' => function ($query){
-      
-              $query->select(DB::raw("COALESCE(SUM(paid_amount),0)"));
-              
+
+            'sell AS total_paid_amount' => function ($query) {
+                $query->select(DB::raw('COALESCE(SUM(paid_amount),0)'));
             },
-            
-            ])->orderBy('customer_name','asc');
+            ])->orderBy('customer_name', 'asc');
 
-            if($name != ''){
-             
-                $customer->where('customer_name','LIKE','%'.$name.'%');
+        if ($name != '') {
+            $customer->where('customer_name', 'LIKE', '%'.$name.'%');
+        }
 
-            }
+        if ($email != '') {
+            $customer->where('email', 'LIKE', '%'.$email.'%');
+        }
 
-            if($email != ''){
-                 
-                $customer->where('email','LIKE','%'.$email.'%');
+        if ($phone != '') {
+            $customer->where('phone', 'LIKE', '%'.$phone.'%');
+        }
 
-            }
+        $customer = $customer->paginate(10);
 
-            if($phone != ''){
-               
-                $customer->where('phone','LIKE','%'.$phone.'%');
-
-            }
-            
-            $customer = $customer->paginate(10);
-
-            return $customer;
-
+        return $customer;
     }
 
     /**
@@ -72,26 +57,23 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-         
             'customer_name' => 'required',
             'email' => 'nullable|email|unique:customers',
             'phone' => 'nullable|numeric|unique:customers',
         ]);
-       
-        try{
-            $customer = new Customer;
+
+        try {
+            $customer = new Customer();
 
             $customer->customer_name = $request->customer_name;
             $customer->email = $request->email;
@@ -99,34 +81,25 @@ class CustomerController extends Controller
             $customer->address = $request->address;
             $customer->save();
 
-            return response()->json(['status'=>'success','message'=>'Cliente agregado']);
+            return response()->json(['status' => 'success', 'message' => 'Ccliente adicionado
+            ']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Algo deu errado!']);
         }
-        catch(\Exception $e)
-        {
-         
-            return response()->json(['status'=>'error','message'=>'¡Algo salió mal!']);
-
-        }
-    
-
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -137,20 +110,17 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $request->validate([
-         
             'customer_name' => 'required',
             'email' => 'nullable|email|unique:customers,email,'.$request->id,
             'phone' => 'nullable|numeric|unique:customers,email,'.$request->id,
         ]);
-       
-        try{
+
+        try {
             $customer = Customer::find($id);
             $customer->customer_name = $request->customer_name;
             $customer->email = $request->email;
@@ -158,24 +128,18 @@ class CustomerController extends Controller
             $customer->address = $request->address;
             $customer->update();
 
-            return response()->json(['status'=>'success','message'=>'Información del cliente actualizada']);
-        }
-        catch(\Exception $e)
-        {
-         
-            return response()->json(['status'=>'error','message'=>'¡Algo salió mal!']);
-
+            return response()->json(['status' => 'success', 'message' => 'Informações do usuário atualizadas com sucesso']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Algo deu errado!']);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)
     {
-        //
     }
 }

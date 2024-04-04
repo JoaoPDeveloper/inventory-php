@@ -30,7 +30,7 @@ function initCharts() {
     $('.chart.chart-line').sparkline(undefined, {
         type: 'line',
         width: '60px',
-        height: '45px',
+        height: '65px',
         lineColor: '#fff',
         lineWidth: 1.3,
         fillColor: 'rgba(0,0,0,0)',

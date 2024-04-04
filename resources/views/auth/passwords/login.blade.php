@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inventory | Login</title>
+	<title>Inventario | Login</title>
 </head>
 <body>
 
