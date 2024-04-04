@@ -1,3 +1,4 @@
 # Sistema de Gestão de Inventário
 
-![a](https://github.com/carmonabernaldiego/inventory/assets/43613125/156d0afd-573f-4c8b-b5a4-c09955556e10)
+
+![image](https://github.com/JoaoPDeveloper/inventory-php/assets/95835981/42469786-1c76-4ef2-bfe0-297c5e773c89)
